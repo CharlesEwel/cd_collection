@@ -47,5 +47,17 @@ namespace CdList.Objects
       }
       return searchIndex;
     }
+    public static List<Artist> SearchArtists(string searchTerm)
+    {
+      List<Artist> searchedList = new List<Artist> {};
+      foreach(var artist in _artists)
+      {
+        if (artist.GetArtist().ToLower().Contains(searchTerm.ToLower()))
+        {
+          searchedList.Add(artist);
+        }
+      }
+      return searchedList;
+    }
   }
 }

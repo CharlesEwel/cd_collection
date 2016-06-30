@@ -45,6 +45,13 @@ namespace ToDoList
         List<Artist> allArtists = Artist.GetAllArtists();
         return View["view_all_artists.cshtml", allArtists];
       };
+      Post["/search_list"] = _ => {
+        List<Artist> searchedList = Artist.SearchArtists(Request.Form["search-artist"]);
+        return View["view_all_artists.cshtml", searchedList];
+      };
+      Get["/search_form"] = _ =>{
+        return View["search_form.cshtml"];
+      };
     }
   }
 }
