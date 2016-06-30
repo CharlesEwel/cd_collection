@@ -5,20 +5,20 @@ namespace CdList.Objects
   public class Cd
   {
     private string _albumTitle;
-    private string _artist;
-    private static List<string> _artists = new List<string> {};
-    private static List<Cd> _cds = new List<Cd> {};
-    public Cd (string AlbumTitle, string Artist)
+    // private string _artist;
+    // private static List<string> _artists = new List<string> {};
+    // private static List<Cd> _cds = new List<Cd> {};
+    public Cd (string AlbumTitle)
     {
       _albumTitle=AlbumTitle;
-      _artist=Artist;
-      _artists.Add(_artist);
-      _cds.Add(this);
+      // _artist=Artist;
+      // _artists.Add(_artist);
+      // _cds.Add(this);
     }
-    public string GetArtist()
-    {
-      return _artist;
-    }
+    // public string GetArtist()
+    // {
+    //   return _artist;
+    // }
     public string GetAlbum()
     {
       return _albumTitle;
@@ -27,9 +27,9 @@ namespace CdList.Objects
     // {
     //   return _artists;
     // }
-    public static List<Cd> GetAllCds()
-    {
-      return _cds;
-    }
+    // public static List<Cd> GetAllCds()
+    // {
+    //   return _cds;
+    // }
   }
 }

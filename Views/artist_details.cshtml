@@ -7,9 +7,13 @@
   <body>
     <h1>@Model.GetArtist()</h1>
     <ul>
-      <li>@Model.GetAlbum()</li>
+      @foreach(string cd in Model.GetAlbums())
+      {
+        <li>@cd</li>
+      }
+
     </ul>
-    <a href="/view_all_cds">View All Cds</a>
+    <a href="/view_all_artists">View All Cds</a>
     <a href="/add_cd">Add another Album</a>
   </body>
 </html>

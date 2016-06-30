@@ -14,12 +14,36 @@ namespace ToDoList
           return View["add_cd.cshtml"];
       };
       Post["/add_new_cd"] = _ =>{
-        Cd newCd = new Cd(Request.Form["new-album"], Request.Form["new-artist"]);
-        return View["artist_details.cshtml", newCd];
+        List<Artist> allArtists = Artist.GetAllArtists();
+        int artistIndex=-1;
+        if (allArtists.Count > 0)
+        {
+          artistIndex = Artist.Find(Request.Form["new-artist"]);
+        }
+        if (artistIndex == -1){
+          Artist newArtist = new Artist(Request.Form["new-artist"]);
+          newArtist.AddAlbum(Request.Form["new-album"]);
+          return View["artist_details.cshtml", newArtist];
+        } else {
+          Artist newArtist = allArtists[artistIndex];
+          newArtist.AddAlbum(Request.Form["new-album"]);
+          return View["artist_details.cshtml", newArtist];
+        }
+        // return View["artist_details.cshtml", newArtist];
       };
-      Get["/view_all_cds"] = _ => {
-        List<Cd> allCds = Cd.GetAllCds();
-        return View["view_all_cds.cshtml", allCds];
+      // Get["/artist_details"] = _ =>{
+      //   Artist newArtist = new Artist(Request.Form["new-artist"]);
+      //   newArtist.AddAlbum(Request.Form["new-album"]);
+      //   return View["artist_details.cshtml", newArtist];
+      // };
+      Get["/{detailsArtist}"] = parameters => {
+        List<Artist> allArtists = Artist.GetAllArtists();
+        Artist currentArtist = allArtists [Artist.Find(parameters.detailsArtist)];
+        return View ["artist_details.cshtml", currentArtist];
+      };
+      Get["/view_all_artists"] = _ => {
+        List<Artist> allArtists = Artist.GetAllArtists();
+        return View["view_all_artists.cshtml", allArtists];
       };
     }
   }

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Your Artists</title>
+  </head>
+  <body>
+    <h1>Your Artists</h1>
+    <ul>
+      @foreach(var artist in Model)
+      {
+        <li><a href="/@artist.GetArtist()">@artist.GetArtist()</a></li>
+      }
+    </ul>
+    <a href="/">Home</a>
+  </body>
+</html>
